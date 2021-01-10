@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.0/examples/sign-in/signin.css" rel="stylesheet">
+
+
+</head>
+<body class="text-center">
+<form class="form-signin" method="post" action="/auth/login">
+    <img class="mb-4" src="https://www.flaticon.com/svg/static/icons/svg/857/857681.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <label for="username" class="visually-hidden">Username</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+    <label for="password" class="visually-hidden">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <button class="w-100 btn btn-lg btn-outline-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</form>
+</body>
+</html>
