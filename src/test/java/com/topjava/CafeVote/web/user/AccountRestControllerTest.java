@@ -70,7 +70,8 @@ public class AccountRestControllerTest extends AbstractControllerTest {
     @Test
     void update() throws Exception {
         UserTo updatedTo = new UserTo(null, "newName", "newName", "user@yandex.ru", "newPassword");
-        perform(MockMvcRequestBuilders.put(REST_ACCOUNT_URL).contentType(MediaType.APPLICATION_JSON)
+        perform(MockMvcRequestBuilders.put(REST_ACCOUNT_URL)
+                .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(USER1))
                 .content(JsonUtil.writeValue(updatedTo)))
                 .andDo(print())

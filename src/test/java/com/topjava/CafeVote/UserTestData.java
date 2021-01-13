@@ -25,10 +25,7 @@ public class UserTestData {
     public static final User USER7 = new User(8, "legolas@mail.ru", "legolas", "greenleaf", "password", Role.USER);
     public static final User USER8 = new User(9, "gimley@mail.ru", "gimley", "gloins", "password", Role.USER);
 
-
-    static {
-        List<User> ALL_USERS = List.of(ADMIN, USER1, USER2, USER3, USER4, USER5, USER6, USER7);
-    }
+    public static final List<User> ALL_USERS = List.of(ADMIN, USER1, USER2, USER3, USER4, USER5, USER6, USER7, USER8);
 
     public static User getNew() {
         return new User(null, "new@gmail.com", "New", "User",  "newPass", LocalDateTime.now(), Collections.singleton(Role.USER));

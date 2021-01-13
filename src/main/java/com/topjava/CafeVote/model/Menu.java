@@ -1,10 +1,12 @@
 package com.topjava.CafeVote.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.topjava.CafeVote.HasId;
+import com.topjava.CafeVote.util.DateTimeUtil;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Menu extends AbstractBaseEntity {
 
+    @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
+    @JsonFormat(pattern = DateTimeUtil.DATE_PATTERN)
     @Column(name = "menu_date", nullable = false, columnDefinition = "date default current_date")
     private LocalDate menuDate;
 

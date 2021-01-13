@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -16,7 +15,7 @@ import java.util.List;
 public class Restaurant extends AbstractNamedEntity {
 
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @JsonBackReference
     private List<Menu> menus;
 

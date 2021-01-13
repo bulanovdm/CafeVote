@@ -3,7 +3,6 @@ package com.topjava.CafeVote.config.security;
 import com.topjava.CafeVote.model.Role;
 import com.topjava.CafeVote.model.User;
 import com.topjava.CafeVote.repository.UserRepository;
-import com.topjava.CafeVote.config.security.AuthUser;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/account/register").anonymous()
                 .antMatchers("/api/account").hasRole(Role.USER.name())
+                .antMatchers("/api/restaurants").hasRole(Role.USER.name())
                 .antMatchers("/api/**").hasRole(Role.ADMIN.name())
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

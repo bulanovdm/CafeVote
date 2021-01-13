@@ -9,6 +9,7 @@ import com.topjava.CafeVote.service.MenuService;
 import com.topjava.CafeVote.service.RestaurantService;
 import com.topjava.CafeVote.service.VoteService;
 import com.topjava.CafeVote.to.VoteTo;
+import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,8 +22,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = UserRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags="Restaurant Controller")
 public class UserRestaurantRestController extends AbstractRestaurantRestController {
-    public static final String REST_URL = "/restaurants";
+    public static final String REST_URL = "/api/restaurants";
 
     public UserRestaurantRestController(RestaurantService restaurantService, MealService mealService, MenuService menuService, VoteService voteService) {
         super(restaurantService, mealService, menuService, voteService);

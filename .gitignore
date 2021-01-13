@@ -3,7 +3,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-**/src/main/resources/db/h2/h2-schema.txt
 **/src/main/resources/myapi.http
 
 ### IntelliJ IDEA ###

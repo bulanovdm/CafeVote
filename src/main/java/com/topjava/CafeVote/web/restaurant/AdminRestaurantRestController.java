@@ -12,6 +12,8 @@ import com.topjava.CafeVote.to.MealTo;
 import com.topjava.CafeVote.to.MenuTo;
 import com.topjava.CafeVote.to.RestaurantTo;
 import com.topjava.CafeVote.to.VoteTo;
+import io.swagger.annotations.Api;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags="Admin Restaurant Controller")
 public class AdminRestaurantRestController extends AbstractRestaurantRestController {
-    public static final String ADMIN_RESTAURANTS_REST_URL = "/admin/restaurants";
+    public static final String ADMIN_RESTAURANTS_REST_URL = "/api/admin/restaurants";
 
     public AdminRestaurantRestController(RestaurantService restaurantService, MealService mealService, MenuService menuService, VoteService voteService) {
         super(restaurantService, mealService, menuService, voteService);
@@ -72,13 +75,13 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
 
     @Override
     @GetMapping("/{id}/for")
-    public Restaurant getForDay(@PathVariable int id, @RequestParam LocalDate day) {
+    public Restaurant getForDay(@PathVariable int id, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         return super.getForDay(id, day);
     }
 
     @Override
     @GetMapping("/for")
-    public List<Restaurant> getAllForDay(@RequestParam LocalDate day) {
+    public List<Restaurant> getAllForDay(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         return super.getAllForDay(day);
     }
 
