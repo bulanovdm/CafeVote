@@ -54,7 +54,7 @@ public class MenuService {
     }
 
     public List<MenuTo> getAll() {
-        return ToUtil.dayMenusAsToList(menuRepository.findAll());
+        return ToUtil.menusAsToList(menuRepository.findAll());
     }
 
     public List<Menu> getAllForRestaurantId(int restaurantId) {

@@ -2,9 +2,8 @@ DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS day_menus;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS dishes;
+DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS restaurants;
-DROP SEQUENCE IF EXISTS global_seq;
 
 CREATE TABLE USERS
 (
@@ -39,7 +38,7 @@ CREATE TABLE MEALS
     restaurant_id INTEGER      NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX dishes_unique_restaurantid_mealname_idx ON MEALS (restaurant_id, name);
+CREATE UNIQUE INDEX meals_unique_restaurantid_mealname_idx ON MEALS (restaurant_id, name);
 
 CREATE TABLE MENUS
 (

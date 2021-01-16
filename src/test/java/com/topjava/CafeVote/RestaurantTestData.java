@@ -4,19 +4,23 @@ import com.topjava.CafeVote.model.Meal;
 import com.topjava.CafeVote.model.Menu;
 import com.topjava.CafeVote.model.Restaurant;
 import com.topjava.CafeVote.model.Vote;
+import com.topjava.CafeVote.to.MealTo;
+import com.topjava.CafeVote.to.MenuTo;
 import com.topjava.CafeVote.to.VoteTo;
 import com.topjava.CafeVote.util.ToUtil;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static com.topjava.CafeVote.UserTestData.*;
+import static java.time.LocalDate.of;
 
 public class RestaurantTestData {
 
     public static final TestMatcher<Restaurant> RESTAURANT_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Restaurant.class);
-    public static final TestMatcher<Meal> MEAL_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Meal.class);
-    public static final TestMatcher<Menu> MENU_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Menu.class);
+    public static final TestMatcher<Meal> MEAL_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Meal.class, "restaurant");
+    public static final TestMatcher<MealTo> MEALTO_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MealTo.class);
+    public static final TestMatcher<Menu> MENU_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Menu.class, "restaurant", "meal");
+    public static final TestMatcher<MenuTo> MENUTO_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MenuTo.class);
 
     public static final int START_RESTAURANTS_SEQ = 100;
     public static final int RESTAURANT_1ID = START_RESTAURANTS_SEQ + 1;
@@ -88,9 +92,9 @@ public class RestaurantTestData {
     public static final Meal Meal14 = new Meal(Meal14_ID, "Ramen", REST_5);
     public static final Meal Meal15 = new Meal(Meal15_ID, "Chicken with Rice", REST_5);
     public static final Meal Meal16 = new Meal(Meal16_ID, "Fries", REST_6);
-    public static final Meal Meal17 = new Meal(Meal17_ID, "CheeseBurger", REST_6);
-    public static final Meal Meal18 = new Meal(Meal18_ID, "Pizza", REST_6);
-    public static final Meal Meal19 = new Meal(Meal19_ID, "Tomato Soup", REST_7);
+    public static final Meal Meal17 = new Meal(Meal17_ID, "Salmon", REST_6);
+    public static final Meal Meal18 = new Meal(Meal18_ID, "Chicken Wings", REST_6);
+    public static final Meal Meal19 = new Meal(Meal19_ID, "Fries", REST_7);
     public static final Meal Meal20 = new Meal(Meal20_ID, "CheeseBurger", REST_7);
     public static final Meal Meal21 = new Meal(Meal21_ID, "Pizza", REST_7);
     public static final Meal Meal22 = new Meal(Meal22_ID, "Tomato Soup", REST_8);
@@ -100,9 +104,9 @@ public class RestaurantTestData {
     public static final Meal Meal26 = new Meal(Meal26_ID, "Beer", REST_9);
     public static final Meal Meal27 = new Meal(Meal27_ID, "Pizza", REST_9);
 
-    public static final List<Meal> RES3_MealES = List.of(Meal7, Meal8, Meal9);
+    public static final List<Meal> RESTAURANT3_MEAL_LIST = List.of(Meal7, Meal8, Meal9);
 
-    public static final List<Meal> MealES = List.of(Meal1, Meal2, Meal3, Meal4, Meal5, Meal6, Meal7,
+    public static final List<Meal> MEAL_LIST = List.of(Meal1, Meal2, Meal3, Meal4, Meal5, Meal6, Meal7,
             Meal8, Meal9, Meal10, Meal11, Meal12, Meal13, Meal14, Meal15, Meal16, Meal17, Meal18,
             Meal19, Meal20, Meal21, Meal22, Meal23, Meal24, Meal25, Meal26, Meal27);
 
@@ -147,52 +151,52 @@ public class RestaurantTestData {
     public static final int MENU38_ID = START_MENU_SEQ + 38;
     public static final int MENU39_ID = START_MENU_SEQ + 39;
 
-    public static final Menu MENU1 = new Menu(MENU1_ID, LocalDate.of(2019, 7, 1), REST_1, Meal1, 42);
-    public static final Menu MENU2 = new Menu(MENU2_ID, LocalDate.of(2019, 7, 1), REST_1, Meal2, 42);
-    public static final Menu MENU3 = new Menu(MENU3_ID, LocalDate.of(2019, 7, 1), REST_1, Meal3, 42);
-    public static final Menu MENU4 = new Menu(MENU4_ID, LocalDate.of(2019, 7, 1), REST_2, Meal4, 42);
-    public static final Menu MENU5 = new Menu(MENU5_ID, LocalDate.of(2019, 7, 1), REST_3, Meal7, 42);
-    public static final Menu MENU6 = new Menu(MENU6_ID, LocalDate.of(2019, 7, 1), REST_3, Meal8, 42);
-    public static final Menu MENU7 = new Menu(MENU7_ID, LocalDate.of(2019, 7, 1), REST_4, Meal12, 42);
-    public static final Menu MENU8 = new Menu(MENU8_ID, LocalDate.of(2019, 7, 1), REST_5, Meal14, 42);
-    public static final Menu MENU9 = new Menu(MENU9_ID, LocalDate.of(2019, 7, 1), REST_7, Meal19, 42);
-    public static final Menu MENU10 = new Menu(MENU10_ID, LocalDate.of(2019, 7, 1), REST_7, Meal20, 42);
-    public static final Menu MENU11 = new Menu(MENU11_ID, LocalDate.of(2019, 7, 1), REST_7, Meal21, 42);
-    public static final Menu MENU12 = new Menu(MENU12_ID, LocalDate.of(2019, 7, 1), REST_9, Meal25, 42);
-    public static final Menu MENU13 = new Menu(MENU13_ID, LocalDate.of(2019, 7, 1), REST_9, Meal26, 42);
-    public static final Menu MENU14 = new Menu(MENU14_ID, LocalDate.of(2019, 7, 2), REST_1, Meal1, 42);
-    public static final Menu MENU15 = new Menu(MENU15_ID, LocalDate.of(2019, 7, 2), REST_1, Meal2, 42);
-    public static final Menu MENU16 = new Menu(MENU16_ID, LocalDate.of(2019, 7, 2), REST_2, Meal5, 42);
-    public static final Menu MENU17 = new Menu(MENU17_ID, LocalDate.of(2019, 7, 2), REST_2, Meal4, 42);
-    public static final Menu MENU18 = new Menu(MENU18_ID, LocalDate.of(2019, 7, 2), REST_3, Meal9, 42);
-    public static final Menu MENU19 = new Menu(MENU19_ID, LocalDate.of(2019, 7, 2), REST_3, Meal8, 42);
-    public static final Menu MENU20 = new Menu(MENU20_ID, LocalDate.of(2019, 7, 2), REST_4, Meal12, 42);
-    public static final Menu MENU21 = new Menu(MENU21_ID, LocalDate.of(2019, 7, 2), REST_5, Meal14, 42);
-    public static final Menu MENU22 = new Menu(MENU22_ID, LocalDate.of(2019, 7, 2), REST_5, Meal15, 42);
-    public static final Menu MENU23 = new Menu(MENU23_ID, LocalDate.of(2019, 7, 2), REST_7, Meal20, 42);
-    public static final Menu MENU24 = new Menu(MENU24_ID, LocalDate.of(2019, 7, 2), REST_8, Meal23, 42);
-    public static final Menu MENU25 = new Menu(MENU25_ID, LocalDate.of(2019, 7, 2), REST_9, Meal25, 42);
-    public static final Menu MENU26 = new Menu(MENU26_ID, LocalDate.of(2019, 7, 2), REST_8, Meal22, 42);
-    public static final Menu MENU27 = new Menu(MENU27_ID, LocalDate.of(2019, 7, 3), REST_1, Meal1, 42);
-    public static final Menu MENU28 = new Menu(MENU28_ID, LocalDate.of(2019, 7, 3), REST_2, Meal6, 42);
-    public static final Menu MENU29 = new Menu(MENU29_ID, LocalDate.of(2019, 7, 3), REST_1, Meal3, 42);
-    public static final Menu MENU30 = new Menu(MENU30_ID, LocalDate.of(2019, 7, 3), REST_2, Meal4, 42);
-    public static final Menu MENU31 = new Menu(MENU31_ID, LocalDate.of(2019, 7, 3), REST_5, Meal13, 42);
-    public static final Menu MENU32 = new Menu(MENU32_ID, LocalDate.of(2019, 7, 3), REST_3, Meal8, 42);
-    public static final Menu MENU33 = new Menu(MENU33_ID, LocalDate.of(2019, 7, 3), REST_4, Meal12, 42);
-    public static final Menu MENU34 = new Menu(MENU34_ID, LocalDate.of(2019, 7, 3), REST_8, Meal22, 42);
-    public static final Menu MENU35 = new Menu(MENU35_ID, LocalDate.of(2019, 7, 3), REST_8, Meal23, 42);
-    public static final Menu MENU36 = new Menu(MENU36_ID, LocalDate.of(2019, 7, 3), REST_8, Meal24, 42);
-    public static final Menu MENU37 = new Menu(MENU37_ID, LocalDate.of(2019, 7, 3), REST_7, Meal21, 42);
-    public static final Menu MENU38 = new Menu(MENU38_ID, LocalDate.of(2019, 7, 3), REST_9, Meal27, 42);
-    public static final Menu MENU39 = new Menu(MENU39_ID, LocalDate.of(2019, 7, 3), REST_9, Meal26, 42);
+    public static final Menu MENU1 = new Menu(MENU1_ID, of(2021, 1, 10), REST_1, Meal1, 42);
+    public static final Menu MENU2 = new Menu(MENU2_ID, of(2021, 1, 10), REST_1, Meal2, 42);
+    public static final Menu MENU3 = new Menu(MENU3_ID, of(2021, 1, 10), REST_1, Meal3, 42);
+    public static final Menu MENU4 = new Menu(MENU4_ID, of(2021, 1, 10), REST_2, Meal4, 42);
+    public static final Menu MENU5 = new Menu(MENU5_ID, of(2021, 1, 10), REST_3, Meal7, 42);
+    public static final Menu MENU6 = new Menu(MENU6_ID, of(2021, 1, 10), REST_3, Meal8, 42);
+    public static final Menu MENU7 = new Menu(MENU7_ID, of(2021, 1, 10), REST_4, Meal12, 42);
+    public static final Menu MENU8 = new Menu(MENU8_ID, of(2021, 1, 10), REST_5, Meal14, 42);
+    public static final Menu MENU9 = new Menu(MENU9_ID, of(2021, 1, 10), REST_7, Meal19, 42);
+    public static final Menu MENU10 = new Menu(MENU10_ID, of(2021, 1, 10), REST_7, Meal20, 42);
+    public static final Menu MENU11 = new Menu(MENU11_ID, of(2021, 1, 10), REST_7, Meal21, 42);
+    public static final Menu MENU12 = new Menu(MENU12_ID, of(2021, 1, 10), REST_9, Meal25, 42);
+    public static final Menu MENU13 = new Menu(MENU13_ID, of(2021, 1, 10), REST_9, Meal26, 42);
+    public static final Menu MENU14 = new Menu(MENU14_ID, of(2021, 1, 11), REST_1, Meal1, 42);
+    public static final Menu MENU15 = new Menu(MENU15_ID, of(2021, 1, 11), REST_1, Meal2, 42);
+    public static final Menu MENU16 = new Menu(MENU16_ID, of(2021, 1, 11), REST_2, Meal5, 42);
+    public static final Menu MENU17 = new Menu(MENU17_ID, of(2021, 1, 11), REST_2, Meal4, 42);
+    public static final Menu MENU18 = new Menu(MENU18_ID, of(2021, 1, 11), REST_3, Meal9, 42);
+    public static final Menu MENU19 = new Menu(MENU19_ID, of(2021, 1, 11), REST_3, Meal8, 42);
+    public static final Menu MENU20 = new Menu(MENU20_ID, of(2021, 1, 11), REST_4, Meal12, 42);
+    public static final Menu MENU21 = new Menu(MENU21_ID, of(2021, 1, 11), REST_5, Meal14, 42);
+    public static final Menu MENU22 = new Menu(MENU22_ID, of(2021, 1, 11), REST_5, Meal15, 42);
+    public static final Menu MENU23 = new Menu(MENU23_ID, of(2021, 1, 11), REST_7, Meal20, 42);
+    public static final Menu MENU24 = new Menu(MENU24_ID, of(2021, 1, 11), REST_8, Meal23, 42);
+    public static final Menu MENU25 = new Menu(MENU25_ID, of(2021, 1, 11), REST_9, Meal25, 42);
+    public static final Menu MENU26 = new Menu(MENU26_ID, of(2021, 1, 11), REST_8, Meal22, 42);
+    public static final Menu MENU27 = new Menu(MENU27_ID, of(2021, 1, 12), REST_1, Meal1, 42);
+    public static final Menu MENU28 = new Menu(MENU28_ID, of(2021, 1, 12), REST_2, Meal6, 42);
+    public static final Menu MENU29 = new Menu(MENU29_ID, of(2021, 1, 12), REST_1, Meal3, 42);
+    public static final Menu MENU30 = new Menu(MENU30_ID, of(2021, 1, 12), REST_2, Meal4, 42);
+    public static final Menu MENU31 = new Menu(MENU31_ID, of(2021, 1, 12), REST_5, Meal13, 42);
+    public static final Menu MENU32 = new Menu(MENU32_ID, of(2021, 1, 12), REST_3, Meal8, 42);
+    public static final Menu MENU33 = new Menu(MENU33_ID, of(2021, 1, 12), REST_4, Meal12, 42);
+    public static final Menu MENU34 = new Menu(MENU34_ID, of(2021, 1, 12), REST_8, Meal22, 42);
+    public static final Menu MENU35 = new Menu(MENU35_ID, of(2021, 1, 12), REST_8, Meal23, 42);
+    public static final Menu MENU36 = new Menu(MENU36_ID, of(2021, 1, 12), REST_8, Meal24, 42);
+    public static final Menu MENU37 = new Menu(MENU37_ID, of(2021, 1, 12), REST_7, Meal21, 42);
+    public static final Menu MENU38 = new Menu(MENU38_ID, of(2021, 1, 12), REST_9, Meal27, 42);
+    public static final Menu MENU39 = new Menu(MENU39_ID, of(2021, 1, 12), REST_9, Meal26, 42);
 
-    public static final List<Menu> RES8_MENUS = List.of(MENU24, MENU26, MENU34, MENU35, MENU36);
+    public static final List<Menu> RESTAURANT_8ID_MENUS = List.of(MENU24, MENU26, MENU34, MENU35, MENU36);
 
-    public static final List<Menu> MENUS_FOR_20190703 = List.of(MENU27, MENU28, MENU29, MENU30,
+    public static final List<Menu> MENUS_FOR_20210110 = List.of(MENU27, MENU28, MENU29, MENU30,
             MENU31, MENU32, MENU33, MENU34, MENU35, MENU36, MENU37, MENU38, MENU39);
 
-    public static final List<Menu> MENUS_FOR_20190702 = List.of(MENU14, MENU15, MENU16, MENU17,
+    public static final List<Menu> MENUS_FOR_20210111 = List.of(MENU14, MENU15, MENU16, MENU17,
             MENU18, MENU19, MENU20, MENU21, MENU22, MENU23, MENU24, MENU25, MENU26);
 
     public static final List<Menu> DAY_MENUS = List.of(MENU1, MENU2, MENU3, MENU4, MENU5, MENU6,
@@ -201,7 +205,7 @@ public class RestaurantTestData {
             MENU27, MENU28, MENU29, MENU30, MENU31, MENU32, MENU33, MENU34, MENU35, MENU36,
             MENU37, MENU38, MENU39);
 
-    public static final int START_VOTE_SEQ = 50000;
+    public static final int START_VOTE_SEQ = 20000;
     public static final int VOTE1_ID = START_VOTE_SEQ + 1;
     public static final int VOTE2_ID = START_VOTE_SEQ + 2;
     public static final int VOTE3_ID = START_VOTE_SEQ + 3;
@@ -227,32 +231,32 @@ public class RestaurantTestData {
     public static final int VOTE23_ID = START_VOTE_SEQ + 23;
     public static final int VOTE24_ID = START_VOTE_SEQ + 24;
 
-    public static final Vote VOTE1 = new Vote(VOTE1_ID, LocalDate.of(2020, 1, 10), USER8, REST_9);
-    public static final Vote VOTE2 = new Vote(VOTE2_ID, LocalDate.of(2020, 1, 10), USER1, REST_1);
-    public static final Vote VOTE3 = new Vote(VOTE3_ID, LocalDate.of(2020, 1, 10), USER2, REST_3);
-    public static final Vote VOTE4 = new Vote(VOTE4_ID, LocalDate.of(2020, 1, 10), USER3, REST_5);
-    public static final Vote VOTE5 = new Vote(VOTE5_ID, LocalDate.of(2020, 1, 10), USER4, REST_3);
-    public static final Vote VOTE6 = new Vote(VOTE6_ID, LocalDate.of(2020, 1, 10), USER5, REST_3);
-    public static final Vote VOTE7 = new Vote(VOTE7_ID, LocalDate.of(2020, 1, 10), USER6, REST_1);
-    public static final Vote VOTE8 = new Vote(VOTE8_ID, LocalDate.of(2020, 1, 10), USER7, REST_8);
-    public static final Vote VOTE9 = new Vote(VOTE9_ID, LocalDate.of(2020, 1, 10), USER8, REST_9);
-    public static final Vote VOTE10 = new Vote(VOTE10_ID, LocalDate.of(2020, 1, 11), USER1, REST_7);
-    public static final Vote VOTE11 = new Vote(VOTE11_ID, LocalDate.of(2020, 1, 11), USER2, REST_3);
-    public static final Vote VOTE12 = new Vote(VOTE12_ID, LocalDate.of(2020, 1, 11), USER3, REST_6);
-    public static final Vote VOTE13 = new Vote(VOTE13_ID, LocalDate.of(2020, 1, 11), USER4, REST_3);
-    public static final Vote VOTE14 = new Vote(VOTE14_ID, LocalDate.of(2020, 1, 11), USER5, REST_5);
-    public static final Vote VOTE15 = new Vote(VOTE15_ID, LocalDate.of(2020, 1, 11), USER6, REST_1);
-    public static final Vote VOTE16 = new Vote(VOTE16_ID, LocalDate.of(2020, 1, 11), USER7, REST_2);
-    public static final Vote VOTE17 = new Vote(VOTE17_ID, LocalDate.of(2020, 1, 11), USER8, REST_3);
-    public static final Vote VOTE18 = new Vote(VOTE18_ID, LocalDate.of(2020, 1, 11), USER1, REST_3);
-    public static final Vote VOTE19 = new Vote(VOTE19_ID, LocalDate.of(2020, 1, 11), USER2, REST_3);
-    public static final Vote VOTE20 = new Vote(VOTE20_ID, LocalDate.of(2020, 1, 11), USER3, REST_8);
-    public static final Vote VOTE21 = new Vote(VOTE21_ID, LocalDate.of(2020, 1, 11), USER4, REST_8);
-    public static final Vote VOTE22 = new Vote(VOTE22_ID, LocalDate.of(2020, 1, 11), USER5, REST_8);
-    public static final Vote VOTE23 = new Vote(VOTE23_ID, LocalDate.of(2020, 1, 11), USER6, REST_1);
-    public static final Vote VOTE24 = new Vote(VOTE24_ID, LocalDate.of(2020, 1, 11), USER7, REST_4);
+    public static final Vote VOTE1 = new Vote(VOTE1_ID, of(2021, 1, 10), USER8, REST_9);
+    public static final Vote VOTE2 = new Vote(VOTE2_ID, of(2021, 1, 10), USER1, REST_1);
+    public static final Vote VOTE3 = new Vote(VOTE3_ID, of(2021, 1, 10), USER2, REST_3);
+    public static final Vote VOTE4 = new Vote(VOTE4_ID, of(2021, 1, 10), USER3, REST_5);
+    public static final Vote VOTE5 = new Vote(VOTE5_ID, of(2021, 1, 10), USER4, REST_3);
+    public static final Vote VOTE6 = new Vote(VOTE6_ID, of(2021, 1, 10), USER5, REST_3);
+    public static final Vote VOTE7 = new Vote(VOTE7_ID, of(2021, 1, 10), USER6, REST_1);
+    public static final Vote VOTE8 = new Vote(VOTE8_ID, of(2021, 1, 10), USER7, REST_8);
+    public static final Vote VOTE9 = new Vote(VOTE9_ID, of(2021, 1, 10), USER8, REST_9);
+    public static final Vote VOTE10 = new Vote(VOTE10_ID, of(2021, 1, 11), USER1, REST_7);
+    public static final Vote VOTE11 = new Vote(VOTE11_ID, of(2021, 1, 11), USER2, REST_3);
+    public static final Vote VOTE12 = new Vote(VOTE12_ID, of(2021, 1, 11), USER3, REST_6);
+    public static final Vote VOTE13 = new Vote(VOTE13_ID, of(2021, 1, 11), USER4, REST_3);
+    public static final Vote VOTE14 = new Vote(VOTE14_ID, of(2021, 1, 11), USER5, REST_5);
+    public static final Vote VOTE15 = new Vote(VOTE15_ID, of(2021, 1, 11), USER6, REST_1);
+    public static final Vote VOTE16 = new Vote(VOTE16_ID, of(2021, 1, 11), USER7, REST_2);
+    public static final Vote VOTE17 = new Vote(VOTE17_ID, of(2021, 1, 11), USER8, REST_3);
+    public static final Vote VOTE18 = new Vote(VOTE18_ID, of(2021, 1, 11), USER1, REST_3);
+    public static final Vote VOTE19 = new Vote(VOTE19_ID, of(2021, 1, 11), USER2, REST_3);
+    public static final Vote VOTE20 = new Vote(VOTE20_ID, of(2021, 1, 11), USER3, REST_8);
+    public static final Vote VOTE21 = new Vote(VOTE21_ID, of(2021, 1, 11), USER4, REST_8);
+    public static final Vote VOTE22 = new Vote(VOTE22_ID, of(2021, 1, 11), USER5, REST_8);
+    public static final Vote VOTE23 = new Vote(VOTE23_ID, of(2021, 1, 11), USER6, REST_1);
+    public static final Vote VOTE24 = new Vote(VOTE24_ID, of(2021, 1, 11), USER7, REST_4);
 
-    public static final List<VoteTo> VOTE_TOS_FOR_20190713 = ToUtil.votesAsToList(List.of(VOTE17, VOTE18, VOTE19, VOTE20, VOTE21, VOTE22, VOTE23, VOTE24));
-    public static final List<VoteTo> VOTE_TOS_FOR_20190713_FOR_USER3 = ToUtil.votesAsToList(List.of(VOTE20));
-    public static final List<VoteTo> VOTE_TOS_FOR_20190713_FOR_RES8 = ToUtil.votesAsToList(List.of(VOTE20, VOTE21, VOTE22));
+    public static final List<VoteTo> VOTE_TOS_FOR_20210713 = ToUtil.votesAsToList(List.of(VOTE17, VOTE18, VOTE19, VOTE20, VOTE21, VOTE22, VOTE23, VOTE24));
+    public static final List<VoteTo> VOTE_TOS_FOR_20210713_FOR_USER3 = ToUtil.votesAsToList(List.of(VOTE20));
+    public static final List<VoteTo> VOTE_TOS_FOR_20210713_FOR_RES8 = ToUtil.votesAsToList(List.of(VOTE20, VOTE21, VOTE22));
 }

@@ -28,7 +28,7 @@ public class ToUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<MenuTo> dayMenusAsToList(List<Menu> dayMenus) {
+    public static List<MenuTo> menusAsToList(List<Menu> dayMenus) {
         return dayMenus.stream()
                 .map(MenuTo::new)
                 .collect(Collectors.toList());

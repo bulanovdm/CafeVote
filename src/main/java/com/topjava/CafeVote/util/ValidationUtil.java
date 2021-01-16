@@ -1,10 +1,9 @@
 package com.topjava.CafeVote.util;
 
 
-import com.topjava.CafeVote.error.ErrorType;
-import com.topjava.CafeVote.error.IllegalRequestDataException;
-import com.topjava.CafeVote.error.NotFoundException;
 import com.topjava.CafeVote.HasId;
+import com.topjava.CafeVote.error.ErrorType;
+import com.topjava.CafeVote.error.NotFoundException;
 import lombok.experimental.UtilityClass;
 import org.slf4j.Logger;
 import org.springframework.core.NestedExceptionUtils;
@@ -60,7 +59,7 @@ public class ValidationUtil {
 
     public static void checkNotFound(boolean found, String msg) {
         if (!found) {
-            throw new IllegalRequestDataException ("Not found entity with " + msg);
+            throw new NotFoundException ("Not found entity with " + msg);
         }
     }
 
@@ -81,7 +80,7 @@ public class ValidationUtil {
 
     public static void checkNew(HasId bean) {
         if (!bean.isNew()) {
-            throw new IllegalRequestDataException(bean.getClass().getSimpleName() + " must be new (id=null)");
+            throw new NotFoundException(bean.getClass().getSimpleName() + " must be new (id=null)");
         }
     }
 
@@ -90,7 +89,7 @@ public class ValidationUtil {
         if (bean.isNew()) {
             bean.setId(id);
         } else if (bean.id() != id) {
-            throw new IllegalRequestDataException(bean.getClass().getSimpleName() + " must has id=" + id);
+            throw new NotFoundException(bean.getClass().getSimpleName() + " must has id=" + id);
         }
     }
 

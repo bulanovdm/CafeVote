@@ -156,13 +156,13 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
 
     @Override
     @GetMapping("/{restaurantId}/menus/for")
-    public List<Menu> getAllMenusForDayByRestaurantId(@PathVariable int restaurantId, @RequestParam LocalDate day) {
+    public List<Menu> getAllMenusForDayByRestaurantId(@PathVariable int restaurantId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         return super.getAllMenusForDayByRestaurantId(restaurantId, day);
     }
 
     @Override
     @GetMapping("/menus/for")
-    public List<Menu> getAllMenusForDay(@RequestParam LocalDate day) {
+    public List<Menu> getAllMenusForDay(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         return super.getAllMenusForDay(day);
     }
 
@@ -182,14 +182,14 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
     @Override
     @DeleteMapping("/{restaurantId}/menus/for")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllMenusForDay(@PathVariable int restaurantId, @RequestParam LocalDate day) {
+    public void deleteAllMenusForDay(@PathVariable int restaurantId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         super.deleteAllMenusForDay(restaurantId, day);
     }
 
     /* --- votes --- */
     @Override
     @GetMapping("/{restaurantId}/votes/for")
-    public List<VoteTo> getAllForDateForRestaurant(@RequestParam LocalDate day, @PathVariable int restaurantId) {
+    public List<VoteTo> getAllForDateForRestaurant(@RequestParam LocalDate day, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) int restaurantId) {
         return super.getAllForDateForRestaurant(day, restaurantId);
     }
 
