@@ -27,7 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags="Admin Restaurant Controller")
+@Api(tags = "Admin Restaurant Controller")
 public class AdminRestaurantRestController extends AbstractRestaurantRestController {
     public static final String ADMIN_RESTAURANTS_REST_URL = "/api/admin/restaurants";
 
@@ -128,8 +128,8 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
     @Override
     @PostMapping(value = "/{restaurantId}/menus/{MealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Menu createMenu(@Validated(View.Web.class) @RequestBody Menu Menu,
-                                 @PathVariable int restaurantId,
-                                 @PathVariable int MealId) {
+                           @PathVariable int restaurantId,
+                           @PathVariable int MealId) {
         return super.createMenu(Menu, restaurantId, MealId);
     }
 
@@ -137,8 +137,8 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
     @PutMapping(value = "/{restaurantId}/menus/{MealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateMenu(@Validated(View.Web.class) @RequestBody Menu Menu,
-                              @PathVariable int restaurantId,
-                              @PathVariable int MealId) {
+                           @PathVariable int restaurantId,
+                           @PathVariable int MealId) {
         super.updateMenu(Menu, restaurantId, MealId);
     }
 

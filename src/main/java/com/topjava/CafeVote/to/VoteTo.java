@@ -17,16 +17,16 @@ public class VoteTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    LocalDate menuDate;
+    protected LocalDate menuDate;
 
     @NotBlank
     @Size(min = 2, max = 100)
-    String restaurantName;
+    protected String restaurantName;
 
     @Email
     @NotBlank
     @Size(min = 2, max = 100)
-    String userEmail;
+    protected String userEmail;
 
     public VoteTo(Integer id, @NotNull LocalDate menuDate, @NotBlank @Size(min = 2, max = 100) String restaurantName,
                   @Email @NotBlank @Size(min = 2, max = 100) String userEmail) {

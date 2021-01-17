@@ -30,22 +30,6 @@ public abstract class AbstractControllerTest {
         return mockMvc.perform(builder);
     }
 
-    /*@Autowired
-    private CacheManager cacheManager;*/  // //not found bean
-
-/*    @BeforeEach
-    void setUp() {
-        cacheManager.getCache("restaurants").clear();
-        clear2ndLevelHibernateCache();
-    }
-
-    public void clear2ndLevelHibernateCache() {
-        Session s = (Session) em.getDelegate();
-        SessionFactory sf = s.getSessionFactory();
-        sf.getCache().evictAllRegions();
-    }
-*/
-
     public ResultMatcher errorType(ErrorType type) {
         return jsonPath("$.type").value(type.name());
     }

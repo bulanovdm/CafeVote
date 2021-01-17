@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-public class UserTestData {
+public class UserTestDataConstants {
     public static final TestMatcher<User> USER_MATCHER = TestMatcher.usingIgnoringFieldsComparator(User.class, "registered", "password", "date");
 
     public static final int ADMIN_ID = 1;
     public static final int USER_ID = 2;
     public static final int NOT_FOUND = 100;
 
-    public static final User ADMIN = new User(ADMIN_ID, "admin@gmail.com", "admin", "admin","password", Role.ADMIN, Role.USER);
+    public static final User ADMIN = new User(ADMIN_ID, "admin@gmail.com", "admin", "admin", "password", Role.ADMIN, Role.USER);
     public static final User USER1 = new User(USER_ID, "user@gmail.com", "user", "user", "password", Role.USER);
     public static final User USER2 = new User(3, "frodo@mail.ru", "frodo", "baggins", "password", Role.USER);
     public static final User USER3 = new User(4, "sam@gmail.com", "sam", "gamgee", "password", Role.USER);
@@ -28,7 +28,7 @@ public class UserTestData {
     public static final List<User> ALL_USERS = List.of(ADMIN, USER1, USER2, USER3, USER4, USER5, USER6, USER7, USER8);
 
     public static User getNew() {
-        return new User(null, "new@gmail.com", "New", "User",  "newPass", LocalDateTime.now(), Collections.singleton(Role.USER));
+        return new User(null, "new@gmail.com", "New", "User", "newPass", LocalDateTime.now(), Collections.singleton(Role.USER));
     }
 
     public static User getUpdated() {

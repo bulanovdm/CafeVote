@@ -2,7 +2,6 @@ package com.topjava.CafeVote.to;
 
 import com.topjava.CafeVote.model.Restaurant;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import javax.validation.constraints.NotBlank;

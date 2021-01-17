@@ -1,7 +1,6 @@
 package com.topjava.CafeVote.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.topjava.CafeVote.HasId;
 import com.topjava.CafeVote.HasIdAndEmail;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -58,16 +57,8 @@ public class User extends AbstractBaseEntity implements HasIdAndEmail {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Role> roles;
-
-    public void setEmail(String email) {
-        this.email = StringUtils.hasText(email) ? email.toLowerCase() : null;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
-    }
 
     public User(Integer id, @Email @NotEmpty @Size(max = 128) String email, @NotBlank @Size(min = 2, max = 100) String firstName,
                 @NotBlank @Size(min = 2, max = 100) String lastName, @Size(max = 255) String password, @NotNull LocalDateTime date, Set<Role> roles) {
@@ -81,10 +72,18 @@ public class User extends AbstractBaseEntity implements HasIdAndEmail {
     }
 
     public User(User u) {
-        this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(),  u.getPassword(), u.getDate(), u.getRoles());
+        this(u.getId(), u.getEmail(), u.getFirstName(), u.getLastName(), u.getPassword(), u.getDate(), u.getRoles());
     }
 
     public User(Integer id, String email, String firstname, String lastname, String password, Role role, Role... roles) {
         this(id, email, firstname, lastname, password, LocalDateTime.now(), EnumSet.of(role, roles));
+    }
+
+    public void setEmail(String email) {
+        this.email = StringUtils.hasText(email) ? email.toLowerCase() : null;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
     }
 }

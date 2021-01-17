@@ -22,11 +22,9 @@ public class UniqueMailValidator implements org.springframework.validation.Valid
     @Override
     public void validate(Object target, Errors errors) {
         HasIdAndEmail user = ((HasIdAndEmail) target);
-        if (StringUtils.hasText(user.getEmail())) {
-            if (userRepository.getByEmail(user.getEmail().toLowerCase())
-                    .filter(u -> !u.getId().equals(user.getId())).isPresent()) {
-                errors.rejectValue("email", "", GlobalExceptionHandler.EXCEPTION_DUPLICATE_EMAIL);
-            }
+        if (StringUtils.hasText(user.getEmail()) &&
+                (userRepository.getByEmail(user.getEmail().toLowerCase()).filter(u -> !u.getId().equals(user.getId())).isPresent())) {
+            errors.rejectValue("email", "", GlobalExceptionHandler.EXCEPTION_DUPLICATE_EMAIL);
         }
     }
 }

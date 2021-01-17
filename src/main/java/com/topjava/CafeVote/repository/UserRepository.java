@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository extends BaseRepository<User>  {
+public interface UserRepository extends BaseRepository<User> {
 
     @Transactional
     @Modifying

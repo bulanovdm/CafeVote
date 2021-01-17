@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public interface MenuRepository extends BaseRepository<Menu>  {
+public interface MenuRepository extends BaseRepository<Menu> {
 
     @Transactional
     @Modifying

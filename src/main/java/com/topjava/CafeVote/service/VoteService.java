@@ -1,5 +1,6 @@
 package com.topjava.CafeVote.service;
 
+import com.topjava.CafeVote.error.IllegalRequestDataException;
 import com.topjava.CafeVote.model.Restaurant;
 import com.topjava.CafeVote.model.User;
 import com.topjava.CafeVote.model.Vote;
@@ -47,7 +48,7 @@ public class VoteService {
 
     @SneakyThrows
     @Transactional
-    public Vote vote (LocalDate date, int userId, int restaurantId) {
+    public Vote vote(LocalDate date, int userId, int restaurantId) {
 
         Optional<Vote> optionalVote = voteRepository.findByUserIdAndVoteDate(userId, date);
         User user = userRepository.getOne(userId);
@@ -61,7 +62,7 @@ public class VoteService {
         if (LocalTime.now().isBefore(LocalTime.of(11, 0))) {
             vote = voteRepository.save(new Vote(optionalVote.get().getId(), date, user, restaurant));
         } else {
-            throw new RuntimeException(String.format("User %s %s already voted", user.getLastName(), user.getFirstName()));
+            throw new IllegalRequestDataException(String.format("User %s %s already voted", user.getLastName(), user.getFirstName()));
         }
         return vote;
     }

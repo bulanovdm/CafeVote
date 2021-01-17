@@ -16,7 +16,9 @@ import java.time.LocalDate;
 @Table(name = "menus", uniqueConstraints = {@UniqueConstraint(
         columnNames = {"menu_date", "restaurant_id", "meal_id"},
         name = "menus_unique_menuday_restaurantid_mealid_idx")})
-@Getter @Setter @ToString(callSuper = true)
+@Getter
+@Setter
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Menu extends AbstractBaseEntity {
@@ -32,7 +34,6 @@ public class Menu extends AbstractBaseEntity {
     @JsonIgnore
     private Restaurant restaurant;
 
-    //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "meal_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

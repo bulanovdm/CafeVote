@@ -1,6 +1,5 @@
 package com.topjava.CafeVote.to;
 
-import com.topjava.CafeVote.HasId;
 import com.topjava.CafeVote.HasIdAndEmail;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
@@ -18,20 +17,20 @@ public class UserTo extends BaseTo implements Serializable, HasIdAndEmail {
 
     @NotBlank
     @Size(min = 2, max = 100)
-    String firstName;
+    protected String firstName;
 
     @NotBlank
     @Size(min = 2, max = 100)
-    String lastName;
+    protected String lastName;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    String email;
+    protected String email;
 
     @NotBlank
     @Size(min = 5, max = 255)
-    String password;
+    protected String password;
 
     public UserTo(Integer id, @NotBlank @Size(min = 2, max = 100) String firstName, @NotBlank @Size(min = 2, max = 100) String lastName,
                   @Email @NotBlank @Size(max = 100) String email, @NotBlank @Size(min = 5, max = 255) String password) {

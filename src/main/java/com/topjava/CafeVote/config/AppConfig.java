@@ -34,7 +34,7 @@ public class AppConfig {
 
     //    https://stackoverflow.com/a/46947975/548473
     @Bean
-    Module module() {
+    public Module module() {
         return new Hibernate5Module();
     }
 

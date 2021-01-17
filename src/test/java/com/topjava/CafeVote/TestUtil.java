@@ -1,8 +1,8 @@
 package com.topjava.CafeVote;
 
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import com.topjava.CafeVote.model.User;
 import com.topjava.CafeVote.util.JsonUtil;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;

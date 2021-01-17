@@ -5,8 +5,6 @@ import com.topjava.CafeVote.model.Restaurant;
 import com.topjava.CafeVote.repository.RestaurantRepository;
 import com.topjava.CafeVote.to.RestaurantTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -27,17 +25,15 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         checkNew(restaurant);
         return restaurantRepository.save(restaurant);
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        checkNotFoundWithId(restaurant, restaurant.getId());
+        checkNotFoundWithId(restaurant, restaurant.id());
         restaurantRepository.save(restaurant);
     }
 
@@ -53,7 +49,6 @@ public class RestaurantService {
         return checkNotFoundWithId(restaurant, id);
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(restaurantRepository.delete(id) != 0, id);
     }
@@ -66,7 +61,6 @@ public class RestaurantService {
         return restaurantRepository.getAllForDay(localDate);
     }
 
-    @Cacheable("restaurants")
     public List<Restaurant> getAllForToday() {
         return restaurantRepository.getAllForDay(LocalDate.now());
     }

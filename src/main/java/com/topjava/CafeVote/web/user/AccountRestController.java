@@ -1,8 +1,8 @@
 package com.topjava.CafeVote.web.user;
 
+import com.topjava.CafeVote.config.security.AuthUser;
 import com.topjava.CafeVote.model.Role;
 import com.topjava.CafeVote.model.User;
-import com.topjava.CafeVote.config.security.AuthUser;
 import com.topjava.CafeVote.to.UserTo;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -27,10 +27,10 @@ import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 @RequestMapping(value = AccountRestController.REST_ACCOUNT_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Slf4j
-@Api(tags="Account Controller")
-public class AccountRestController extends AbstractUserController  {
+@Api(tags = "Account Controller")
+public class AccountRestController extends AbstractUserController {
 
-    static final String REST_ACCOUNT_URL = "/api/account";
+    public static final String REST_ACCOUNT_URL = "/api/account";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> get(@AuthenticationPrincipal AuthUser authUser) {

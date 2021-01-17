@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static com.topjava.CafeVote.TestUtil.readFromJson;
 import static com.topjava.CafeVote.TestUtil.userHttpBasic;
-import static com.topjava.CafeVote.UserTestData.*;
+import static com.topjava.CafeVote.UserTestDataConstants.*;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

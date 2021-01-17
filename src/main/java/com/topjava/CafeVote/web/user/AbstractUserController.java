@@ -1,8 +1,8 @@
 package com.topjava.CafeVote.web.user;
 
+import com.topjava.CafeVote.HasId;
 import com.topjava.CafeVote.model.User;
 import com.topjava.CafeVote.repository.UserRepository;
-import com.topjava.CafeVote.HasId;
 import com.topjava.CafeVote.util.UserUtil;
 import com.topjava.CafeVote.web.UniqueMailValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,6 @@ public abstract class AbstractUserController {
         return ResponseEntity.of(repository.findById(id));
     }
 
-//    @CacheEvict(value = "users", allEntries = true)
     public void delete(int id) {
         log.info("delete {}", id);
         checkSingleModification(repository.delete(id), "User id=" + id + " not found");

@@ -15,14 +15,13 @@ import java.util.List;
 @RequestMapping(value = VoteRestController.ADMIN_VOTES_REST_CONTROLLER, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class VoteRestController {
+    public static final String ADMIN_VOTES_REST_CONTROLLER = "/admin/votes";
     private final VoteService voteService;
 
     @Autowired
     public VoteRestController(VoteService voteService) {
         this.voteService = voteService;
     }
-
-    public static final String ADMIN_VOTES_REST_CONTROLLER = "/admin/votes";
 
     @GetMapping()
     public List<VoteTo> getAllForToday() {

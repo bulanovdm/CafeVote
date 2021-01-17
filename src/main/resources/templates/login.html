@@ -10,13 +10,13 @@
 
 </head>
 <body class="text-center">
-<form class="form-signin" method="post" action="/auth/login">
-    <img class="mb-4" src="https://www.flaticon.com/svg/static/icons/svg/857/857681.svg" alt="" width="72" height="72">
+<form action="/auth/login" class="form-signin" method="post">
+    <img alt="" class="mb-4" height="72" src="https://www.flaticon.com/svg/static/icons/svg/857/857681.svg" width="72">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <label for="username" class="visually-hidden">Username</label>
-    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
-    <label for="password" class="visually-hidden">Password</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <label class="visually-hidden" for="username">Username</label>
+    <input autofocus class="form-control" id="username" name="username" placeholder="Username" required type="text">
+    <label class="visually-hidden" for="password">Password</label>
+    <input class="form-control" id="password" name="password" placeholder="Password" required type="password">
     <button class="w-100 btn btn-lg btn-outline-primary" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 </form>

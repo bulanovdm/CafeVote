@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.topjava.CafeVote.TestUtil.readFromJson;
 import static com.topjava.CafeVote.TestUtil.userHttpBasic;
-import static com.topjava.CafeVote.UserTestData.*;
+import static com.topjava.CafeVote.UserTestDataConstants.*;
 import static com.topjava.CafeVote.web.user.AccountRestController.REST_ACCOUNT_URL;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

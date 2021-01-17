@@ -11,10 +11,10 @@ import com.topjava.CafeVote.util.ToUtil;
 
 import java.util.List;
 
-import static com.topjava.CafeVote.UserTestData.*;
+import static com.topjava.CafeVote.UserTestDataConstants.*;
 import static java.time.LocalDate.of;
 
-public class RestaurantTestData {
+public class RestaurantTestDataConstants {
 
     public static final TestMatcher<Restaurant> RESTAURANT_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Restaurant.class);
     public static final TestMatcher<Meal> MEAL_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Meal.class, "restaurant");

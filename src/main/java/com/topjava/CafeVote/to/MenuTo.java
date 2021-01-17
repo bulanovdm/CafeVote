@@ -14,10 +14,10 @@ public class MenuTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    LocalDate menuDate;
+    protected LocalDate menuDate;
 
     @NotNull
-    Integer price;
+    protected Integer price;
 
     public MenuTo(Integer id, @NotNull LocalDate menuDate, @NotNull Integer price) {
         super(id);

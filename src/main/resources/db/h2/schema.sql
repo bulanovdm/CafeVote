@@ -8,8 +8,8 @@ DROP TABLE IF EXISTS RESTAURANTS CASCADE;
 CREATE TABLE USERS
 (
     id         INTEGER IDENTITY PRIMARY KEY,
-    first_name       VARCHAR(255)            NOT NULL,
-    last_name       VARCHAR(255)            NOT NULL,
+    first_name VARCHAR(255)            NOT NULL,
+    last_name  VARCHAR(255)            NOT NULL,
     email      VARCHAR(255)            NOT NULL,
     password   VARCHAR(255)            NOT NULL,
     registered TIMESTAMP DEFAULT now() NOT NULL
@@ -43,7 +43,7 @@ CREATE UNIQUE INDEX meals_unique_restaurantid_mealname_idx ON MEALS (restaurant_
 CREATE TABLE MENUS
 (
     id            INTEGER IDENTITY PRIMARY KEY,
-    menu_date      DATE DEFAULT current_date NOT NULL,
+    menu_date     DATE DEFAULT current_date NOT NULL,
     restaurant_id INTEGER                   NOT NULL,
     meal_id       INTEGER                   NOT NULL,
     price         INTEGER                   NOT NULL,

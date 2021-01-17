@@ -1,7 +1,6 @@
 package com.topjava.CafeVote.model;
 
 import lombok.*;
-import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -11,7 +10,9 @@ import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter @Setter @ToString(callSuper = true)
+@Getter
+@Setter
+@ToString(callSuper = true)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank

@@ -3,6 +3,7 @@ package com.topjava.CafeVote.util;
 
 import com.topjava.CafeVote.HasId;
 import com.topjava.CafeVote.error.ErrorType;
+import com.topjava.CafeVote.error.IllegalRequestDataException;
 import com.topjava.CafeVote.error.NotFoundException;
 import lombok.experimental.UtilityClass;
 import org.slf4j.Logger;
@@ -41,14 +42,14 @@ public class ValidationUtil {
         boolean expired = LocalTime.now().isAfter(EXPIRED);
         checkExpiredDate(date);
         if (expired) {
-            throw new RuntimeException("Expired time for voting");
+            throw new IllegalRequestDataException("Expired time for voting");
         }
     }
 
     public static void checkExpiredDate(LocalDate date) {
         LocalDate today = LocalDate.now();
         if (!date.equals(today)) {
-            throw new RuntimeException("Expired time for voting");
+            throw new IllegalRequestDataException("Expired time for voting");
         }
     }
 
@@ -59,17 +60,18 @@ public class ValidationUtil {
 
     public static void checkNotFound(boolean found, String msg) {
         if (!found) {
-            throw new NotFoundException ("Not found entity with " + msg);
+            throw new NotFoundException("Not found entity with " + msg);
         }
     }
 
     public static <T> T checkNotFoundWithId(Optional<T> optional, int id) {
-        return checkNotFoundWithId(optional, "Entity with id=" + id +" not found");
+        return checkNotFoundWithId(optional, "Entity with id=" + id + " not found");
     }
 
     public static <T> T checkNotFoundWithId(Optional<T> optional, String msg) {
         return optional.orElseThrow(() -> new NotFoundException(msg));
     }
+
     public static void checkNotFoundWithId(boolean found, int id) {
         checkNotFound(found, "id=" + id);
     }

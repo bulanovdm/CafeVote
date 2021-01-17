@@ -12,7 +12,9 @@ import java.util.List;
 @Table(name = "meals", uniqueConstraints = {@UniqueConstraint(
         columnNames = {"restaurant_id", "name"},
         name = "meals_unique_restaurantid_mealname_idx")})
-@Getter @Setter @ToString(callSuper = true)
+@Getter
+@Setter
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Meal extends AbstractNamedEntity {

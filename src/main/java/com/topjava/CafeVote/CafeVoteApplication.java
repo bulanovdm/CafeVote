@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CafeVoteApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(CafeVoteApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CafeVoteApplication.class, args);
+    }
 }

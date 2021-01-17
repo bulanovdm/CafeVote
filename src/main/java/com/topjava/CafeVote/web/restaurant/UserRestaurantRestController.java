@@ -10,6 +10,7 @@ import com.topjava.CafeVote.service.RestaurantService;
 import com.topjava.CafeVote.service.VoteService;
 import com.topjava.CafeVote.to.VoteTo;
 import io.swagger.annotations.Api;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = UserRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags="Restaurant Controller")
+@Api(tags = "Restaurant Controller")
 public class UserRestaurantRestController extends AbstractRestaurantRestController {
     public static final String REST_URL = "/api/restaurants";
 
@@ -31,8 +32,8 @@ public class UserRestaurantRestController extends AbstractRestaurantRestControll
     }
 
     @GetMapping("/{id}")
-    public Restaurant getForDay(@PathVariable int id) {
-        return super.getForDay(id, LocalDate.now());
+    public Restaurant getForDay(@PathVariable int id, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return super.getForDay(id, date);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.topjava.CafeVote.model;
 
-import com.topjava.CafeVote.HasId;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -11,7 +10,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"vote_day", "user_id"}, name = "votes_unique_vote_day_userid_idx")})
-@Getter @Setter @ToString(callSuper = true)
+@Getter
+@Setter
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Vote extends AbstractBaseEntity {

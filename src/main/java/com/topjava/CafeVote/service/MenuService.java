@@ -7,7 +7,6 @@ import com.topjava.CafeVote.repository.RestaurantRepository;
 import com.topjava.CafeVote.to.MenuTo;
 import com.topjava.CafeVote.util.ToUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -32,7 +31,6 @@ public class MenuService {
         this.mealService = mealService;
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     @Transactional
     public Menu create(Menu menu, int restaurantId, int mealId) {
         Assert.notNull(menu, "Menu must not be null");
@@ -43,11 +41,10 @@ public class MenuService {
         return menuRepository.save(menu);
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     @Transactional
     public void update(Menu menu, int restaurantId, int mealId) {
         Assert.notNull(menu, "Menu must not be null");
-        checkNotFoundWithId(menuRepository.get(menu.getId(), restaurantId), menu.getId());
+        checkNotFoundWithId(menuRepository.get(menu.id(), restaurantId), menu.getId());
         menu.setRestaurant(restaurantRepository.getOne(restaurantId));
         menu.setMeal(mealService.get(mealId, restaurantId));
         menuRepository.save(menu);
@@ -73,12 +70,10 @@ public class MenuService {
         return checkNotFoundWithId(menuRepository.get(id, restaurantId), id);
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     public void delete(int id, int restaurantId) throws NotFoundException {
         checkNotFoundWithId(menuRepository.delete(id, restaurantId) != 0, id);
     }
 
-    @CacheEvict(value = "restaurants", allEntries = true)
     public void deleteAllForDate(int restaurantId, LocalDate date) {
         checkNotFoundWithId(menuRepository.deleteAll(restaurantId, date) != 0, restaurantId);
     }
