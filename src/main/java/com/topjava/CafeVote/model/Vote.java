@@ -1,8 +1,11 @@
 package com.topjava.CafeVote.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.topjava.CafeVote.util.DateTimeUtil;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 public class Vote extends AbstractBaseEntity {
 
@@ -27,6 +30,8 @@ public class Vote extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
+    @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
+    @JsonFormat(pattern = DateTimeUtil.DATE_PATTERN)
     @Column(name = "vote_day", nullable = false)
     @NotNull
     private LocalDate voteDate;

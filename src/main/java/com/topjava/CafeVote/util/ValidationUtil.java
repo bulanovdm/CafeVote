@@ -38,19 +38,23 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkExpiredDate(LocalDate date, int menuId) {
+    public static void checkExpiredDateWithTime(LocalDate date, int restaurantId) {
         boolean expired = LocalTime.now().isAfter(EXPIRED);
-        checkExpiredDate(date);
+        checkExpiredDate(date, restaurantId);
         if (expired) {
-            throw new IllegalRequestDataException("Expired time for voting");
+            throw new IllegalRequestDataException("Expired time voting for restaurant with id = " + restaurantId);
         }
     }
 
-    public static void checkExpiredDate(LocalDate date) {
+    public static void checkExpiredDate(LocalDate date, int menuId) {
         LocalDate today = LocalDate.now();
         if (!date.equals(today)) {
-            throw new IllegalRequestDataException("Expired time for voting");
+            throw new IllegalRequestDataException("Expired date voting for menu with id=" + menuId);
         }
+    }
+
+    public static boolean isNotExpired(@NonNull LocalTime voteTime) {
+        return voteTime.isBefore(EXPIRED);
     }
 
     public static <T> T checkNotFound(T object, String msg) {
@@ -64,11 +68,11 @@ public class ValidationUtil {
         }
     }
 
-    public static <T> T checkNotFoundWithId(Optional<T> optional, int id) {
-        return checkNotFoundWithId(optional, "Entity with id=" + id + " not found");
+    public static <T> T checkNotFoundWithIdOptional(Optional<T> optional, int id) {
+        return checkNotFoundWithIdOptional(optional, "Entity with id=" + id + " not found");
     }
 
-    public static <T> T checkNotFoundWithId(Optional<T> optional, String msg) {
+    public static <T> T checkNotFoundWithIdOptional(Optional<T> optional, String msg) {
         return optional.orElseThrow(() -> new NotFoundException(msg));
     }
 

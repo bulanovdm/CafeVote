@@ -8,6 +8,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface BaseRepository<T> extends JpaRepository<T, Integer> {
     default T getExisted(int id) {
-        return ValidationUtil.checkNotFoundWithId(findById(id), id);
+        return ValidationUtil.checkNotFoundWithIdOptional(findById(id), id);
     }
 }

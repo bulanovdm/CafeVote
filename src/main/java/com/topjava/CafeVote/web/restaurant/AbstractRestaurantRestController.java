@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -41,7 +42,7 @@ public abstract class AbstractRestaurantRestController {
         return restaurantService.create(restaurant);
     }
 
-    public void update(Restaurant restaurant) {
+    public void updateVote(Restaurant restaurant) {
         log.info("update restaurant with id={}", restaurant.getId());
         restaurantService.update(restaurant);
     }
@@ -77,9 +78,24 @@ public abstract class AbstractRestaurantRestController {
     }
 
     //vote
-    public Vote vote(LocalDate date, int userId, int restaurantId) {
+    public Vote vote(int userId, int restaurantId) {
         log.info("user with id={} voted for restaurant with id={}", userId, restaurantId);
-        return voteService.vote(date, userId, restaurantId);
+        return voteService.create(userId, restaurantId);
+    }
+
+    public void updateVote(Vote vote, int userId, int restId, LocalDate day, LocalTime voteTime) {
+        log.info("user with id={} update vote for restaurant with id={}", userId, restId);
+        voteService.update(vote, userId, restId, day, voteTime);
+    }
+
+    public Vote getVote(int userId, LocalDate day) {
+        log.info("get vote of user id={} for day {}", userId, day);
+        return voteService.getVote(userId, day);
+    }
+
+    public void deleteVote(int id, LocalDate day, LocalTime time) {
+        log.info("delete vote with id={}", id);
+        voteService.delete(id, day, time);
     }
 
     //votes

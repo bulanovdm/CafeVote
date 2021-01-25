@@ -44,7 +44,7 @@ public class MenuService {
     @Transactional
     public void update(Menu menu, int restaurantId, int mealId) {
         Assert.notNull(menu, "Menu must not be null");
-        checkNotFoundWithId(menuRepository.get(menu.id(), restaurantId), menu.getId());
+        checkNotFoundWithId(menuRepository.get(menu.id(), restaurantId), menu.id());
         menu.setRestaurant(restaurantRepository.getOne(restaurantId));
         menu.setMeal(mealService.get(mealId, restaurantId));
         menuRepository.save(menu);

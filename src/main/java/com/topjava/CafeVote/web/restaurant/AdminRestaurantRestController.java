@@ -35,6 +35,8 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
         super(restaurantService, mealService, menuService, voteService);
     }
 
+    /* --- restaurants --- */
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@Validated(View.Web.class) @RequestBody Restaurant restaurant) {
         Restaurant created = super.create(restaurant);
@@ -46,12 +48,11 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    /* --- restaurants --- */
     @Override
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Validated(View.Web.class) @RequestBody Restaurant restaurant) {
-        super.update(restaurant);
+    public void updateVote(@Validated(View.Web.class) @RequestBody Restaurant restaurant) {
+        super.updateVote(restaurant);
     }
 
     @Override
@@ -189,7 +190,7 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
     /* --- votes --- */
     @Override
     @GetMapping("/{restaurantId}/votes/for")
-    public List<VoteTo> getAllForDateForRestaurant(@RequestParam LocalDate day, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) int restaurantId) {
+    public List<VoteTo> getAllForDateForRestaurant(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day, @PathVariable int restaurantId) {
         return super.getAllForDateForRestaurant(day, restaurantId);
     }
 

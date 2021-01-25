@@ -21,6 +21,8 @@ public class RestaurantTestDataConstants {
     public static final TestMatcher<MealTo> MEALTO_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MealTo.class);
     public static final TestMatcher<Menu> MENU_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Menu.class, "restaurant", "meal");
     public static final TestMatcher<MenuTo> MENUTO_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MenuTo.class);
+    public static final TestMatcher<Vote> VOTE_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Vote.class);
+    public static final TestMatcher<VoteTo> VOTETO_TEST_MATCHER = TestMatcher.usingIgnoringFieldsComparator(VoteTo.class);
 
     public static final int START_RESTAURANTS_SEQ = 100;
     public static final int RESTAURANT_1ID = START_RESTAURANTS_SEQ + 1;
@@ -32,6 +34,7 @@ public class RestaurantTestDataConstants {
     public static final int RESTAURANT_7ID = START_RESTAURANTS_SEQ + 7;
     public static final int RESTAURANT_8ID = START_RESTAURANTS_SEQ + 8;
     public static final int RESTAURANT_9ID = START_RESTAURANTS_SEQ + 9;
+    public static final int RESTAURANT_10ID_NEW = START_RESTAURANTS_SEQ + 10;
 
     public static final int RESTAURANT_ID_NOT_FOUND = START_RESTAURANTS_SEQ + 42;
 
@@ -231,32 +234,32 @@ public class RestaurantTestDataConstants {
     public static final int VOTE23_ID = START_VOTE_SEQ + 23;
     public static final int VOTE24_ID = START_VOTE_SEQ + 24;
 
-    public static final Vote VOTE1 = new Vote(VOTE1_ID, of(2021, 1, 10), USER8, REST_9);
-    public static final Vote VOTE2 = new Vote(VOTE2_ID, of(2021, 1, 10), USER1, REST_1);
-    public static final Vote VOTE3 = new Vote(VOTE3_ID, of(2021, 1, 10), USER2, REST_3);
-    public static final Vote VOTE4 = new Vote(VOTE4_ID, of(2021, 1, 10), USER3, REST_5);
-    public static final Vote VOTE5 = new Vote(VOTE5_ID, of(2021, 1, 10), USER4, REST_3);
-    public static final Vote VOTE6 = new Vote(VOTE6_ID, of(2021, 1, 10), USER5, REST_3);
-    public static final Vote VOTE7 = new Vote(VOTE7_ID, of(2021, 1, 10), USER6, REST_1);
-    public static final Vote VOTE8 = new Vote(VOTE8_ID, of(2021, 1, 10), USER7, REST_8);
-    public static final Vote VOTE9 = new Vote(VOTE9_ID, of(2021, 1, 10), USER8, REST_9);
-    public static final Vote VOTE10 = new Vote(VOTE10_ID, of(2021, 1, 11), USER1, REST_7);
-    public static final Vote VOTE11 = new Vote(VOTE11_ID, of(2021, 1, 11), USER2, REST_3);
-    public static final Vote VOTE12 = new Vote(VOTE12_ID, of(2021, 1, 11), USER3, REST_6);
-    public static final Vote VOTE13 = new Vote(VOTE13_ID, of(2021, 1, 11), USER4, REST_3);
-    public static final Vote VOTE14 = new Vote(VOTE14_ID, of(2021, 1, 11), USER5, REST_5);
-    public static final Vote VOTE15 = new Vote(VOTE15_ID, of(2021, 1, 11), USER6, REST_1);
-    public static final Vote VOTE16 = new Vote(VOTE16_ID, of(2021, 1, 11), USER7, REST_2);
-    public static final Vote VOTE17 = new Vote(VOTE17_ID, of(2021, 1, 11), USER8, REST_3);
-    public static final Vote VOTE18 = new Vote(VOTE18_ID, of(2021, 1, 11), USER1, REST_3);
-    public static final Vote VOTE19 = new Vote(VOTE19_ID, of(2021, 1, 11), USER2, REST_3);
-    public static final Vote VOTE20 = new Vote(VOTE20_ID, of(2021, 1, 11), USER3, REST_8);
-    public static final Vote VOTE21 = new Vote(VOTE21_ID, of(2021, 1, 11), USER4, REST_8);
-    public static final Vote VOTE22 = new Vote(VOTE22_ID, of(2021, 1, 11), USER5, REST_8);
-    public static final Vote VOTE23 = new Vote(VOTE23_ID, of(2021, 1, 11), USER6, REST_1);
-    public static final Vote VOTE24 = new Vote(VOTE24_ID, of(2021, 1, 11), USER7, REST_4);
+    public static final Vote VOTE1 = new Vote(VOTE1_ID, of(2021, 1, 10), USER7, REST_9);
+    public static final Vote VOTE2 = new Vote(VOTE2_ID, of(2021, 1, 10), ADMIN, REST_1);
+    public static final Vote VOTE3 = new Vote(VOTE3_ID, of(2021, 1, 10), USER1, REST_3);
+    public static final Vote VOTE4 = new Vote(VOTE4_ID, of(2021, 1, 10), USER2, REST_5);
+    public static final Vote VOTE5 = new Vote(VOTE5_ID, of(2021, 1, 10), USER3, REST_3);
+    public static final Vote VOTE6 = new Vote(VOTE6_ID, of(2021, 1, 10), USER4, REST_3);
+    public static final Vote VOTE7 = new Vote(VOTE7_ID, of(2021, 1, 10), USER5, REST_1);
+    public static final Vote VOTE8 = new Vote(VOTE8_ID, of(2021, 1, 10), USER6, REST_8);
+    public static final Vote VOTE9 = new Vote(VOTE9_ID, of(2021, 1, 10), USER7, REST_9);
+    public static final Vote VOTE10 = new Vote(VOTE10_ID, of(2021, 1, 11), ADMIN, REST_7);
+    public static final Vote VOTE11 = new Vote(VOTE11_ID, of(2021, 1, 11), USER1, REST_3);
+    public static final Vote VOTE12 = new Vote(VOTE12_ID, of(2021, 1, 11), USER2, REST_6);
+    public static final Vote VOTE13 = new Vote(VOTE13_ID, of(2021, 1, 11), USER3, REST_3);
+    public static final Vote VOTE14 = new Vote(VOTE14_ID, of(2021, 1, 11), USER4, REST_5);
+    public static final Vote VOTE15 = new Vote(VOTE15_ID, of(2021, 1, 11), USER5, REST_1);
+    public static final Vote VOTE16 = new Vote(VOTE16_ID, of(2021, 1, 11), USER6, REST_2);
+    public static final Vote VOTE17 = new Vote(VOTE17_ID, of(2021, 1, 12), USER7, REST_3);
+    public static final Vote VOTE18 = new Vote(VOTE18_ID, of(2021, 1, 12), ADMIN, REST_3);
+    public static final Vote VOTE19 = new Vote(VOTE19_ID, of(2021, 1, 12), USER1, REST_3);
+    public static final Vote VOTE20 = new Vote(VOTE20_ID, of(2021, 1, 12), USER2, REST_8);
+    public static final Vote VOTE21 = new Vote(VOTE21_ID, of(2021, 1, 12), USER3, REST_8);
+    public static final Vote VOTE22 = new Vote(VOTE22_ID, of(2021, 1, 12), USER4, REST_8);
+    public static final Vote VOTE23 = new Vote(VOTE23_ID, of(2021, 1, 12), USER5, REST_1);
+    public static final Vote VOTE24 = new Vote(VOTE24_ID, of(2021, 1, 12), USER6, REST_4);
 
     public static final List<VoteTo> VOTE_TOS_FOR_20210713 = ToUtil.votesAsToList(List.of(VOTE17, VOTE18, VOTE19, VOTE20, VOTE21, VOTE22, VOTE23, VOTE24));
     public static final List<VoteTo> VOTE_TOS_FOR_20210713_FOR_USER3 = ToUtil.votesAsToList(List.of(VOTE20));
-    public static final List<VoteTo> VOTE_TOS_FOR_20210713_FOR_RES8 = ToUtil.votesAsToList(List.of(VOTE20, VOTE21, VOTE22));
+    public static final List<VoteTo> VOTE_TOS_FOR_20210111_FOR_RES8 = ToUtil.votesAsToList(List.of(VOTE20, VOTE21, VOTE22));
 }
