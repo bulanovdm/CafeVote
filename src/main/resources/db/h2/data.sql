@@ -34,7 +34,7 @@ VALUES (101, 'The Lady & Sons'),
        (108, 'Banana Leaf'),
        (109, 'Yum Yum Tree');
 
-INSERT INTO MEALS(ID, NAME, RESTAURANT_ID)
+INSERT INTO MEALS(ID, NAME, RESTAURANT_MEAL)
 VALUES (1001, 'Fries', 101),
        (1002, 'Burger', 101),
        (1003, 'Chicken Wings', 101),
