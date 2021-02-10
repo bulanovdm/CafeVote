@@ -5,6 +5,7 @@ import com.topjava.CafeVote.model.Meal;
 import com.topjava.CafeVote.service.MealService;
 import com.topjava.CafeVote.util.JsonUtil;
 import com.topjava.CafeVote.web.AbstractControllerTest;
+import com.topjava.CafeVote.web.restaurant.admin.AdminRestaurantRestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

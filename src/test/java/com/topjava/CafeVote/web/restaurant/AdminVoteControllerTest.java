@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static com.topjava.CafeVote.RestaurantTestDataConstants.*;
 import static com.topjava.CafeVote.TestUtil.userHttpBasic;
 import static com.topjava.CafeVote.UserTestDataConstants.ADMIN;
-import static com.topjava.CafeVote.web.restaurant.AdminRestaurantRestController.ADMIN_RESTAURANTS_REST_URL;
+import static com.topjava.CafeVote.web.restaurant.admin.AdminRestaurantRestController.ADMIN_RESTAURANTS_REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +36,7 @@ public class AdminVoteControllerTest extends AbstractControllerTest {
     @Test
     void testGetAllVotesForDayForRestaurant() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT_8ID + "/votes/for")
-                .param("day", "2021-01-12")
+                .param("date", "2021-01-12")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

@@ -17,10 +17,9 @@ import java.util.List;
 
 import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 
-
+@Slf4j
 @RestController
 @RequestMapping(value = AdminRestController.REST_ADMIN_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Slf4j
 @Api(tags = "Admin Controller")
 public class AdminRestController extends AbstractUserController {
 
@@ -29,6 +28,7 @@ public class AdminRestController extends AbstractUserController {
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable int id) {
+        log.info("get user with id={}", id);
         return super.get(id);
     }
 

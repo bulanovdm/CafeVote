@@ -6,6 +6,7 @@ import com.topjava.CafeVote.model.Restaurant;
 import com.topjava.CafeVote.service.RestaurantService;
 import com.topjava.CafeVote.util.JsonUtil;
 import com.topjava.CafeVote.web.AbstractControllerTest;
+import com.topjava.CafeVote.web.restaurant.admin.AdminRestaurantRestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -135,7 +136,7 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     @Test
     void restaurantGetForDay() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT_2ID + "/for")
-                .param("day", "2021-01-10")
+                .param("date", "2021-01-10")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -146,7 +147,7 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     @Test
     void restaurantGetForDayNotFound() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT_6ID + "/for")
-                .param("day", "2021-01-10")
+                .param("date", "2021-01-10")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isUnprocessableEntity())
                 //.andExpect(errorType(DATA_NOT_FOUND))
@@ -157,7 +158,7 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     @Test
     void restaurantGetAllForDay() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/for")
-                .param("day", "2021-01-10")
+                .param("date", "2021-01-10")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())

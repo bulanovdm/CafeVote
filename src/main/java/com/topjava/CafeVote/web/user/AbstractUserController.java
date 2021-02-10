@@ -36,12 +36,10 @@ public abstract class AbstractUserController {
     }
 
     public ResponseEntity<User> get(int id) {
-        log.info("get {}", id);
         return ResponseEntity.of(repository.findById(id));
     }
 
     public void delete(int id) {
-        log.info("delete {}", id);
         checkSingleModification(repository.delete(id), "User id=" + id + " not found");
     }
 

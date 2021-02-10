@@ -9,6 +9,7 @@ import com.topjava.CafeVote.to.MenuTo;
 import com.topjava.CafeVote.util.JsonUtil;
 import com.topjava.CafeVote.util.ToUtil;
 import com.topjava.CafeVote.web.AbstractControllerTest;
+import com.topjava.CafeVote.web.restaurant.admin.AdminRestaurantRestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -63,7 +64,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
     @Test
     void menuGetAllMenusForDayByRestaurantId() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT_8ID + "/menus/for")
-                .param("day", "2021-01-11")
+                .param("date", "2021-01-11")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -74,7 +75,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
     @Test
     void menuGetAllMenusForDay() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/menus/for")
-                .param("day", "2021-01-11")
+                .param("date", "2021-01-11")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -106,7 +107,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
     @Test
     void menuDeleteAllMenuForDay() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + RESTAURANT_1ID + "/menus/for")
-                .param("day", "2021-01-10")
+                .param("date", "2021-01-10")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isNoContent())
                 .andDo(print());

@@ -14,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -23,24 +24,24 @@ import static com.topjava.CafeVote.util.UserUtil.createNewFromTo;
 import static com.topjava.CafeVote.util.UserUtil.updateFromTo;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 
+@Slf4j
 @RestController
 @RequestMapping(value = AccountRestController.REST_ACCOUNT_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
-@Slf4j
 @Api(tags = "Account Controller")
 public class AccountRestController extends AbstractUserController {
 
     public static final String REST_ACCOUNT_URL = "/api/account";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> get(@AuthenticationPrincipal AuthUser authUser) {
+    public ResponseEntity<User> get(@ApiIgnore @AuthenticationPrincipal AuthUser authUser) {
         log.info("get {}", authUser);
         return super.get(authUser.id());
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@AuthenticationPrincipal AuthUser authUser) {
+    public void delete(@ApiIgnore @AuthenticationPrincipal AuthUser authUser) {
         log.info("delete {}", authUser);
         super.delete(authUser.id());
     }
@@ -60,7 +61,7 @@ public class AccountRestController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthUser authUser) throws BindException {
+    public void update(@Valid @RequestBody UserTo userTo, @ApiIgnore @AuthenticationPrincipal AuthUser authUser) throws BindException {
         log.info("update {} to {}", authUser, userTo);
         validateBeforeUpdate(userTo, authUser.id());
         User user = repository.getExisted(userTo.id());
