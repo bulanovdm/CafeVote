@@ -25,15 +25,15 @@ public interface MenuRepository extends BaseRepository<Menu> {
     @Query("DELETE FROM Menu m WHERE m.restaurant.id=:id AND m.menuDate=:date")
     int deleteAll(@Param("id") int restaurantId, @Param("date") LocalDate date);
 
-    @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.meal WHERE m.restaurant.id=:restaurantId AND m.menuDate=:date")
+    @Query("SELECT m FROM Menu m JOIN FETCH m.meal WHERE m.restaurant.id=:restaurantId AND m.menuDate=:date")
     List<Menu> getAllForDateAndRestaurantId(@Param("restaurantId") int restaurantId, @Param("date") LocalDate date);
 
     @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.meal WHERE m.menuDate=:date")
     List<Menu> getAllForDate(@Param("date") LocalDate date);
 
-    @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.meal WHERE m.restaurant.id=:restaurantId")
+    @Query("SELECT m FROM Menu m JOIN FETCH m.meal WHERE m.restaurant.id=:restaurantId")
     List<Menu> getAllByRestaurantId(@Param("restaurantId") int restaurantId);
 
-    @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.meal JOIN FETCH m.restaurant WHERE m.id=:id AND m.restaurant.id=:restaurantId")
+    @Query("SELECT m FROM Menu m JOIN FETCH m.meal JOIN FETCH m.restaurant WHERE m.id=:id AND m.restaurant.id=:restaurantId")
     Menu get(@Param("id") int id, @Param("restaurantId") int restaurantId);
 }

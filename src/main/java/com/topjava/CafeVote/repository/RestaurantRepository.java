@@ -28,6 +28,6 @@ public interface RestaurantRepository extends BaseRepository<Restaurant> {
     @Query("SELECT DISTINCT r FROM Restaurant r JOIN FETCH r.menus m JOIN FETCH m.meal WHERE m.menuDate=:day ORDER BY r.name")
     List<Restaurant> getAllForDay(@Param("day") LocalDate day);
 
-    @Query("SELECT DISTINCT r FROM Restaurant r JOIN FETCH r.menus m JOIN FETCH m.meal WHERE r.id=:restaurantId AND m.menuDate=:day")
+    @Query("SELECT r FROM Restaurant r JOIN FETCH r.menus m JOIN FETCH m.meal WHERE r.id=:restaurantId AND m.menuDate=:day")
     Restaurant getByIdForDay(@Param("restaurantId") Integer restaurantId, @Param("day") LocalDate day);
 }

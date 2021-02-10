@@ -25,6 +25,6 @@ public interface MealRepository extends BaseRepository<Meal> {
     @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId")
     List<Meal> getAllByRestaurantId(@Param("restaurantId") int restaurantId);
 
-    @Query("SELECT DISTINCT m FROM Meal m JOIN FETCH m.restaurant WHERE m.id=:id AND m.restaurant.id=:restaurantId")
+    @Query("SELECT m FROM Meal m WHERE m.id=:id AND m.restaurant.id=:restaurantId")
     Meal get(@Param("id") int id, @Param("restaurantId") int restaurantId);
 }

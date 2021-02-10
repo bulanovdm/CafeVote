@@ -7,7 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 // https://stackoverflow.com/questions/42781264/multiple-base-repositories-in-spring-data-jpa
 @NoRepositoryBean
 public interface BaseRepository<T> extends JpaRepository<T, Integer> {
-    default T getExisted(int id) {
+    default T existsById(int id) {
         return ValidationUtil.checkNotFoundWithIdOptional(findById(id), id);
     }
 }
