@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "meals", uniqueConstraints = {@UniqueConstraint(
-        columnNames = {"restaurant_id", "name"},
-        name = "meals_unique_restaurantid_mealname_idx")})
+        columnNames = {"restaurant_meal", "name"},
+        name = "meals_unique_restaurantmeal_mealname_idx")})
 @Getter
 @Setter
 @ToString(callSuper = true)
@@ -20,7 +20,7 @@ import java.util.List;
 public class Meal extends AbstractNamedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id")
+    @JoinColumn(name = "restaurant_meal")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Restaurant restaurant;

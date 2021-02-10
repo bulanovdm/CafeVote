@@ -33,12 +33,12 @@ CREATE UNIQUE INDEX restaurants_unique_name_idx ON restaurants (name);
 
 CREATE TABLE MEALS
 (
-    id            INTEGER IDENTITY PRIMARY KEY,
-    name          VARCHAR(255) NOT NULL,
-    restaurant_id INTEGER      NOT NULL,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+    id              INTEGER IDENTITY PRIMARY KEY,
+    name            VARCHAR(255) NOT NULL,
+    restaurant_meal INTEGER      NOT NULL,
+    FOREIGN KEY (restaurant_meal) REFERENCES restaurants (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX meals_unique_restaurantid_mealname_idx ON MEALS (restaurant_id, name);
+CREATE UNIQUE INDEX meals_unique_restaurantmeal_mealname_idx ON MEALS (restaurant_meal, name);
 
 CREATE TABLE MENUS
 (
