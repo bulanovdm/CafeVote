@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNotFoundWithId;
 
@@ -35,7 +36,7 @@ public class MenuService {
     public Menu create(Menu menu, int restaurantId, int mealId) {
         Assert.notNull(menu, "Menu must not be null");
         checkNew(menu);
-        if (menu.getMenuDate() == null) menu.setMenuDate(LocalDate.now());
+        if (menu.getMenuDate() == null) menu.setMenuDate(getCurrentDate());
         menu.setRestaurant(restaurantRepository.getOne(restaurantId));
         menu.setMeal(mealService.get(mealId, restaurantId));
         return menuRepository.save(menu);

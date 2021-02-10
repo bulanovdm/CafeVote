@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.List;
+
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
 
 @Slf4j
 @RestController
@@ -30,12 +31,12 @@ public class UserMenuRestController extends AbstractRestaurantRestController {
     @GetMapping("/{restId}/menus")
     public List<Menu> getAllMenusForDay(@PathVariable int restId) {
         log.info("get all Menus for restaurant with id={} for day", restId);
-        return menuService.getAllForByDateRestaurantId(restId, LocalDate.now());
+        return menuService.getAllForByDateRestaurantId(restId, getCurrentDate());
     }
 
     @GetMapping("/menus")
     public List<Menu> getAllMenusForDay() {
         log.info("get all Menus for day");
-        return menuService.getAllForDate(LocalDate.now());
+        return menuService.getAllForDate(getCurrentDate());
     }
 }

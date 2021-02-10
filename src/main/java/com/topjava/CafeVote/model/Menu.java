@@ -12,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
+
 @Entity
 @Table(name = "menus", uniqueConstraints = {@UniqueConstraint(
         columnNames = {"menu_date", "restaurant_id", "meal_id"},
@@ -62,7 +64,7 @@ public class Menu extends AbstractBaseEntity {
     }
 
     public void setMenuDate(LocalDate menuDate) {
-        if (menuDate == null) menuDate = LocalDate.now();
+        if (menuDate == null) menuDate = getCurrentDate();
         this.menuDate = menuDate;
     }
 }

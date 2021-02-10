@@ -19,7 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
@@ -73,6 +72,6 @@ public class UserVoteRestController extends AbstractRestaurantRestController {
     @GetMapping("/votes")
     public List<VoteTo> getAllVotesForDay(@ApiIgnore @AuthenticationPrincipal AuthUser authUser) {
         log.info("user with id={} get all his votes for current date", authUser.id());
-        return voteService.getAllForDateForUser(LocalDate.now(), authUser.id());
+        return voteService.getAllForDateForUser(getCurrentDate(), authUser.id());
     }
 }

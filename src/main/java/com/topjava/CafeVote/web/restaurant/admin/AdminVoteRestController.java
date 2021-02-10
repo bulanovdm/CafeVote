@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
+
 @Slf4j
 @RestController
 @RequestMapping(value = AbstractRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,6 +37,6 @@ public class AdminVoteRestController extends AbstractRestaurantRestController {
     @GetMapping("/{restaurantId}/votes")
     public List<VoteTo> getAllForTodayForRestaurant(@PathVariable int restaurantId) {
         log.info("get all votes for today for restaurant with id={}", restaurantId);
-        return voteService.getAllForDateForRestaurant(LocalDate.now(), restaurantId);
+        return voteService.getAllForDateForRestaurant(getCurrentDate(), restaurantId);
     }
 }

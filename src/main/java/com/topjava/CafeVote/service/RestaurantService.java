@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
 import static com.topjava.CafeVote.util.ToUtil.restaurantsAsToList;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNotFoundWithId;
@@ -62,6 +63,6 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getAllForToday() {
-        return restaurantRepository.getAllForDay(LocalDate.now());
+        return restaurantRepository.getAllForDay(getCurrentDate());
     }
 }

@@ -8,28 +8,26 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 @UtilityClass
 public class DateTimeUtil {
+
     public static final String DATE_PATTERN = "yyyy-MM-dd";
 
     public static LocalDateTime getCurrentDateTime() {
         LocalDateTime now = LocalDateTime.now(Clock.systemDefaultZone());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return LocalDateTime.parse(now.format(formatter));
+        return now.truncatedTo(ChronoUnit.SECONDS);
     }
 
     public static LocalDate getCurrentDate() {
         LocalDate now = LocalDate.now(Clock.systemDefaultZone());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(now.format(formatter));
+        return now;
     }
 
     public static LocalTime getCurrentTime() {
-        LocalDateTime now = LocalDateTime.now(Clock.systemDefaultZone());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return LocalTime.parse(now.format(formatter));
+        LocalTime now = LocalTime.now(Clock.systemDefaultZone());
+        return now.truncatedTo(ChronoUnit.SECONDS);
     }
 
     public static LocalDate parseLocalDate(@Nullable String str) {

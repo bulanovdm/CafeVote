@@ -6,10 +6,10 @@ import com.topjava.CafeVote.to.UserTo;
 import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static com.topjava.CafeVote.config.security.WebSecurityConfig.PASSWORD_ENCODER;
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDateTime;
 
 
 @UtilityClass
@@ -17,7 +17,7 @@ public class UserUtil {
 
     public static User createNewFromTo(UserTo userTo) {
         return new User(null, userTo.getEmail().toLowerCase(), userTo.getFirstName(), userTo.getLastName(),
-                userTo.getPassword(), LocalDateTime.now(), Collections.singleton(Role.USER));
+                userTo.getPassword(), getCurrentDateTime(), Collections.singleton(Role.USER));
     }
 
     public static UserTo asTo(User user) {

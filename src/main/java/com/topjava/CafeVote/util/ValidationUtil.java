@@ -17,6 +17,9 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentTime;
+
 @UtilityClass
 public class ValidationUtil {
     public static final LocalTime EXPIRED = LocalTime.of(11, 0);
@@ -39,7 +42,7 @@ public class ValidationUtil {
     }
 
     public static void checkExpiredDateWithTime(LocalDate date, int restaurantId) {
-        boolean expired = LocalTime.now().isAfter(EXPIRED);
+        boolean expired = getCurrentTime().isAfter(EXPIRED);
         checkExpiredDate(date, restaurantId);
         if (expired) {
             throw new IllegalRequestDataException("Expired time voting for restaurant with id = " + restaurantId);
@@ -47,7 +50,7 @@ public class ValidationUtil {
     }
 
     public static void checkExpiredDate(LocalDate date, int menuId) {
-        LocalDate today = LocalDate.now();
+        LocalDate today = getCurrentDate();
         if (!date.equals(today)) {
             throw new IllegalRequestDataException("Expired date voting for menu with id=" + menuId);
         }
