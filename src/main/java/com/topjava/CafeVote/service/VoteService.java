@@ -1,6 +1,7 @@
 package com.topjava.CafeVote.service;
 
 import com.topjava.CafeVote.error.IllegalRequestDataException;
+import com.topjava.CafeVote.error.NotFoundException;
 import com.topjava.CafeVote.model.Vote;
 import com.topjava.CafeVote.repository.RestaurantRepository;
 import com.topjava.CafeVote.repository.UserRepository;
@@ -10,14 +11,13 @@ import com.topjava.CafeVote.util.ToUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
+import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentTime;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNotFoundWithIdOptional;
 import static com.topjava.CafeVote.util.ValidationUtil.isNotExpired;
 
@@ -37,22 +37,20 @@ public class VoteService {
     }
 
     @Transactional
-    public Vote save(Vote vote, int userId, int restaurantId) {
+    public Vote create(int userId, int restaurantId) {
+        var vote = new Vote();
         if (vote.getVoteDate() == null) vote.setVoteDate(getCurrentDate());
         vote.setUser(userRepository.getOne(userId));
         vote.setRestaurant(restaurantRepository.getOne(restaurantId));
         return voteRepository.save(vote);
     }
 
-    public Vote create(int userId, int restId) {
-        return save(new Vote(), userId, restId);
-    }
-
-    public void update(Vote vote, int userId, int restId, LocalDate day, LocalTime voteTime) {
-        Assert.notNull(vote, "vote must not be null");
-        checkNotFoundWithIdOptional(voteRepository.getByUserIdAndVoteDate(userId, day), vote.id());
-        if (isNotExpired(voteTime)) {
-            save(vote, userId, restId);
+    public void update(int userId, int restId) {
+        if (isNotExpired(getCurrentTime())) {
+            var voteToUpdate = voteRepository.getByUserIdAndVoteDate(userId, getCurrentDate())
+                    .orElseThrow(() -> new NotFoundException("Vote for today not found"));
+            voteToUpdate.setRestaurant(restaurantRepository.getOne(restId));
+            voteRepository.save(voteToUpdate);
         } else {
             throw new IllegalRequestDataException("Time to vote is already expired");
         }
@@ -63,10 +61,10 @@ public class VoteService {
     }
 
 
-    public boolean delete(int userId, LocalDate day, LocalTime voteTime) {
-        Optional<Vote> oldVote = voteRepository.getByUserIdAndVoteDate(userId, day);
-        if (oldVote.isPresent() && isNotExpired(voteTime)) {
-            return voteRepository.delete(userId, day) != 0;
+    public boolean delete(int userId) {
+        Optional<Vote> oldVote = voteRepository.getByUserIdAndVoteDate(userId, getCurrentDate());
+        if (oldVote.isPresent() && isNotExpired(getCurrentTime())) {
+            return voteRepository.delete(userId, getCurrentDate()) != 0;
         } else {
             throw new IllegalRequestDataException("Vote delete is expired");
         }
