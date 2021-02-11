@@ -25,7 +25,7 @@ public class UserRestaurantRestController extends AbstractRestaurantRestControll
         super(restaurantService, mealService, menuService, voteService);
     }
 
-    @GetMapping("/{restId}")
+    @GetMapping("/{restId}/for")
     public Restaurant getForDay(@PathVariable int restId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("get restaurant with id={} for day={}", restId, date);
         return restaurantService.getForDay(restId, date);
