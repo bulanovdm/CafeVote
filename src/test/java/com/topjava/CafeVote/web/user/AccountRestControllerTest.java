@@ -64,7 +64,7 @@ public class AccountRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newUser.setId(newId);
         USER_MATCHER.assertMatch(created, newUser);
-        USER_MATCHER.assertMatch(userRepository.getExisted(newId), newUser);
+        USER_MATCHER.assertMatch(userRepository.existsById(newId), newUser);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class AccountRestControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        USER_MATCHER.assertMatch(userRepository.getExisted(USER_ID), UserUtil.updateFromTo(new User(USER1), updatedTo));
+        USER_MATCHER.assertMatch(userRepository.existsById(USER_ID), UserUtil.updateFromTo(new User(USER1), updatedTo));
     }
 
     @Test

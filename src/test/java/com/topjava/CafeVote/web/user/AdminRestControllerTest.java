@@ -65,7 +65,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> userRepository.getExisted(USER_ID));
+        assertThrows(NotFoundException.class, () -> userRepository.existsById(USER_ID));
     }
 
     @Test
@@ -100,7 +100,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        USER_MATCHER.assertMatch(userRepository.getExisted(USER_ID), getUpdated());
+        USER_MATCHER.assertMatch(userRepository.existsById(USER_ID), getUpdated());
     }
 
     @Test
@@ -116,7 +116,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newUser.setId(newId);
         USER_MATCHER.assertMatch(created, newUser);
-        USER_MATCHER.assertMatch(userRepository.getExisted(newId), newUser);
+        USER_MATCHER.assertMatch(userRepository.existsById(newId), newUser);
     }
 
     @Test
