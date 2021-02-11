@@ -22,6 +22,8 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
+
 @Slf4j
 @RestController
 @RequestMapping(value = AbstractRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,6 +39,7 @@ public class AdminRestaurantRestController extends AbstractRestaurantRestControl
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@Validated(View.Web.class) @RequestBody Restaurant restaurant) {
         log.info("create restaurant with name={}", restaurant.getName());
+        checkNew(restaurant);
         Restaurant created = restaurantService.create(restaurant);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()

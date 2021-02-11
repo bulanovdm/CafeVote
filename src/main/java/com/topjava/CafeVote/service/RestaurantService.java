@@ -5,6 +5,8 @@ import com.topjava.CafeVote.model.Restaurant;
 import com.topjava.CafeVote.repository.RestaurantRepository;
 import com.topjava.CafeVote.to.RestaurantTo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -13,7 +15,6 @@ import java.util.List;
 
 import static com.topjava.CafeVote.util.DateTimeUtil.getCurrentDate;
 import static com.topjava.CafeVote.util.ToUtil.restaurantsAsToList;
-import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -26,18 +27,20 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
+    @CacheEvict("restaurants")
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        checkNew(restaurant);
         return restaurantRepository.save(restaurant);
     }
 
+    @CacheEvict("restaurants")
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         checkNotFoundWithId(restaurant, restaurant.id());
         restaurantRepository.save(restaurant);
     }
 
+    @Cacheable("restaurants")
     public List<RestaurantTo> getAll() {
         return restaurantsAsToList(restaurantRepository.getAll());
     }
@@ -50,6 +53,7 @@ public class RestaurantService {
         return checkNotFoundWithId(restaurant, id);
     }
 
+    @CacheEvict("restaurants")
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(restaurantRepository.delete(id) != 0, id);
     }
@@ -58,6 +62,7 @@ public class RestaurantService {
         return checkNotFoundWithId(restaurantRepository.getByIdForDay(id, localDate), id);
     }
 
+    @Cacheable("restaurants")
     public List<Restaurant> getAllForDay(LocalDate localDate) {
         return restaurantRepository.getAllForDay(localDate);
     }

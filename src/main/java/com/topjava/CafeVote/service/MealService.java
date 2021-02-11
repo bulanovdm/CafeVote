@@ -12,7 +12,6 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
 import static com.topjava.CafeVote.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -30,7 +29,6 @@ public class MealService {
     @Transactional
     public Meal create(Meal meal, int restaurantId) {
         Assert.notNull(meal, "meal must not be null");
-        checkNew(meal);
         meal.setRestaurant(restaurantService.get(restaurantId));
         return mealRepository.save(meal);
     }

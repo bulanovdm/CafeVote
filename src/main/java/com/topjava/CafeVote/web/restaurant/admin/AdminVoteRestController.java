@@ -28,6 +28,7 @@ public class AdminVoteRestController extends AbstractRestaurantRestController {
     }
 
     /* --- votes --- */
+
     @GetMapping("/{restaurantId}/votes/for")
     public List<VoteTo> getAllForDateForRestaurant(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @PathVariable int restaurantId) {
         log.info("get all votes for date={} for restaurant with id={}", date, restaurantId);

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
+
 @Slf4j
 @RestController
 @RequestMapping(value = AbstractRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,6 +34,7 @@ public class AdminMealRestController extends AbstractRestaurantRestController {
     @PostMapping(value = "/{restaurantId}/meals", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Meal createMeal(@Validated(View.Web.class) @RequestBody Meal meal, @PathVariable int restaurantId) {
         log.info("create Meal with name={} for restaurant with id={}", meal.getName(), restaurantId);
+        checkNew(meal);
         return mealService.create(meal, restaurantId);
     }
 

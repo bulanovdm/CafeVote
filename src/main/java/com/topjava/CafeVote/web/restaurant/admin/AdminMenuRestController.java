@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.topjava.CafeVote.util.ValidationUtil.checkNew;
+
 @Slf4j
 @RestController
 @RequestMapping(value = AbstractRestaurantRestController.ADMIN_RESTAURANTS_REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = "Admin Menus Controller")
+@Api(tags = "Admin Menu Controller")
 public class AdminMenuRestController extends AbstractRestaurantRestController {
 
     public AdminMenuRestController(RestaurantService restaurantService, MealService mealService, MenuService menuService, VoteService voteService) {
@@ -31,17 +33,18 @@ public class AdminMenuRestController extends AbstractRestaurantRestController {
 
     /* --- menus --- */
 
-    @PostMapping(value = "/{restaurantId}/menus/{MealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Menu createMenu(@Validated(View.Web.class) @RequestBody Menu Menu, @PathVariable int restaurantId, @PathVariable int MealId) {
-        log.info("create Menu for restaurant with id={} and Meal with id={}", restaurantId, MealId);
-        return menuService.create(Menu, restaurantId, MealId);
+    @PostMapping(value = "/{restaurantId}/menus/{mealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Menu createMenuStance(@Validated(View.Web.class) @RequestBody Menu menu, @PathVariable int restaurantId, @PathVariable int mealId) {
+        log.info("create Menu for restaurant with id={} and Meal with id={}", restaurantId, mealId);
+        checkNew(menu);
+        return menuService.create(menu, restaurantId, mealId);
     }
 
-    @PutMapping(value = "/{restaurantId}/menus/{MealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{restaurantId}/menus/{mealId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateMenu(@Validated(View.Web.class) @RequestBody Menu Menu, @PathVariable int restaurantId, @PathVariable int MealId) {
-        log.info("update Menu with id={} for restaurant with id={} and Meal with id={}", Menu.getId(), restaurantId, MealId);
-        menuService.update(Menu, restaurantId, MealId);
+    public void updateMenuStance(@Validated(View.Web.class) @RequestBody Menu menu, @PathVariable int restaurantId, @PathVariable int mealId) {
+        log.info("update Menu with id={} for restaurant with id={} and Meal with id={}", menu.getId(), restaurantId, mealId);
+        menuService.update(menu, restaurantId, mealId);
     }
 
     @GetMapping("/{restaurantId}/menus")
