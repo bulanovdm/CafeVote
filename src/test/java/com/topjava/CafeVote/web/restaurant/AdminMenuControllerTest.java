@@ -4,7 +4,6 @@ import com.topjava.CafeVote.error.NotFoundException;
 import com.topjava.CafeVote.model.Menu;
 import com.topjava.CafeVote.service.MealService;
 import com.topjava.CafeVote.service.MenuService;
-import com.topjava.CafeVote.service.RestaurantService;
 import com.topjava.CafeVote.to.MenuTo;
 import com.topjava.CafeVote.util.JsonUtil;
 import com.topjava.CafeVote.util.ToUtil;
@@ -33,8 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdminMenuControllerTest extends AbstractControllerTest {
 
     private static final String REST_URL = AdminRestaurantRestController.ADMIN_RESTAURANTS_REST_URL + '/';
-    @Autowired
-    private RestaurantService restaurantService;
     @Autowired
     private MealService mealService;
     @Autowired
