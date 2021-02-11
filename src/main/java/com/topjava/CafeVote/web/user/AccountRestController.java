@@ -64,7 +64,7 @@ public class AccountRestController extends AbstractUserController {
     public void update(@Valid @RequestBody UserTo userTo, @ApiIgnore @AuthenticationPrincipal AuthUser authUser) throws BindException {
         log.info("update {} to {}", authUser, userTo);
         validateBeforeUpdate(userTo, authUser.id());
-        User user = repository.getExisted(userTo.id());
+        User user = repository.existsById(userTo.id());
         super.prepareAndSave(updateFromTo(user, userTo));
     }
 }
