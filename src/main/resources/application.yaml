@@ -33,6 +33,6 @@ spring:
 logging:
   level:
     root: WARN
-    com.topjava.CafeVote: DEBUG
+    com.topjava.cafevote: DEBUG
     org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
 #    org.springframework.security.web.FilterChainProxy: DEBUG
